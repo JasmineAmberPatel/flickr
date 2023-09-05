@@ -14,6 +14,7 @@
 		D51A15FC2AA7CC9500C4C7EE /* flickrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A15FB2AA7CC9500C4C7EE /* flickrTests.swift */; };
 		D51A16062AA7CC9500C4C7EE /* flickrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A16052AA7CC9500C4C7EE /* flickrUITests.swift */; };
 		D51A16082AA7CC9500C4C7EE /* flickrUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A16072AA7CC9500C4C7EE /* flickrUITestsLaunchTests.swift */; };
+		D51A16152AA7CE6300C4C7EE /* PhotoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51A16142AA7CE6300C4C7EE /* PhotoListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		D51A16012AA7CC9500C4C7EE /* flickrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = flickrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51A16052AA7CC9500C4C7EE /* flickrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flickrUITests.swift; sourceTree = "<group>"; };
 		D51A16072AA7CC9500C4C7EE /* flickrUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flickrUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D51A16142AA7CE6300C4C7EE /* PhotoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				D51A15EA2AA7CC9400C4C7EE /* flickrApp.swift */,
 				D51A15EC2AA7CC9400C4C7EE /* ContentView.swift */,
+				D51A16142AA7CE6300C4C7EE /* PhotoListView.swift */,
 				D51A15EE2AA7CC9500C4C7EE /* Assets.xcassets */,
 				D51A15F02AA7CC9500C4C7EE /* Preview Content */,
 			);
@@ -259,6 +262,7 @@
 			files = (
 				D51A15ED2AA7CC9400C4C7EE /* ContentView.swift in Sources */,
 				D51A15EB2AA7CC9400C4C7EE /* flickrApp.swift in Sources */,
+				D51A16152AA7CE6300C4C7EE /* PhotoListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
