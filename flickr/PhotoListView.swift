@@ -9,27 +9,27 @@ import SwiftUI
 
 struct PhotoListView: View {
     @State private var searchText: String = ""
+    @ObservedObject private var viewModel = PhotosViewModel()
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 0) {
         // MARK: Search bar
             HStack {
                 TextField("Search", text: $searchText)
-                    .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
                     .textFieldStyle(.roundedBorder)
-                Image(systemName: "magnifyingglass")
             }
             .padding()
+            
+            PhotoView(viewModel)
             
             Spacer()
         }
         .background(Color.gray.opacity(0.3))
-        
     }
 }
 
-struct PhotoListView_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotoListView()
-    }
-}
+//struct PhotoListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PhotoListView()
+//    }
+//}

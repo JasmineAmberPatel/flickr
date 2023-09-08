@@ -8,6 +8,6 @@
 import Foundation
 
 struct Photo: Codable {
-    let photos: Photos
-    let stat: String
+    var photos: Photos
+    var stat: String
 }
