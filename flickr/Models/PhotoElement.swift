@@ -9,6 +9,7 @@ import Foundation
 
 struct PhotoElement: Codable {
     let id: String
+    let owner: String
     let secret: String
     let server: String
     let farm: Int
