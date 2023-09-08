@@ -16,7 +16,7 @@ struct PhotoView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            AsyncImage(url: URL(string: viewModel.photos.photo?.first?.photoUrl ?? "")) { image in
+            AsyncImage(url: URL(string: viewModel.flickrPhotos.photos?.photo?.first?.photoUrl ?? "")) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -26,7 +26,7 @@ struct PhotoView: View {
             .frame(width: 300, height: 300)
             .background(Color.gray.opacity(0.3))
             
-            Text(viewModel.photos.photo?.first?.title ?? "")
+            Text(viewModel.flickrPhotos.photos?.photo?.first?.title ?? "")
         }
         .task {
             do {
