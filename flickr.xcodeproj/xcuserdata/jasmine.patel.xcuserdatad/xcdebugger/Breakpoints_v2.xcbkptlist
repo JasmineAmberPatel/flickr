@@ -14,8 +14,8 @@
             filePath = "flickr/PhotosViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
             landmarkName = "PhotosViewModel"
             landmarkType = "3">
             <Locations>

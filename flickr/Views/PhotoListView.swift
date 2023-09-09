@@ -19,7 +19,7 @@ struct PhotoListView: View {
             Text("Image Search")
                 .font(.title)
                 .bold()
-            
+        
             // MARK: Search bar
             HStack(spacing: 0) {
                 Image(systemName: "magnifyingglass")

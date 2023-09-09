@@ -13,13 +13,6 @@ class PhotosViewModel: ObservableObject {
     
     @Published var flickrPhotos = Flickr()
     
-    init(apiKey: String = ProcessInfo.processInfo.environment["FLICKR_API_KEY"] ?? "",
-         text: String = "yorkshire") {
-        self.apiKey = apiKey
-        self.text = text
-    }
-    
-    
     enum ApiError: Error {
         case invalidUrl
         case invalidResponse

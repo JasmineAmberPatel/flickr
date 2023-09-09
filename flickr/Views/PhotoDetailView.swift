@@ -18,6 +18,7 @@ struct PhotoDetailView: View {
             Spacer()
         }
         .padding()
+        .background(Color.gray.opacity(0.1))
     }
 }
 
