@@ -14,11 +14,17 @@ struct PhotoListView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
+            
+            // MARK: Title
             Text("Image Search")
                 .font(.title)
                 .bold()
+            
             // MARK: Search bar
-            HStack {
+            HStack(spacing: 0) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 25))
+                    .padding(.trailing, 10)
                 TextField("Search", text: $searchText)
                     .focused($textField)
                     .textFieldStyle(.roundedBorder)
@@ -35,6 +41,8 @@ struct PhotoListView: View {
                     }
             }
             .padding()
+            
+            // MARK: Image list
             NavigationView {
                 List {
                     if let photos = viewModel.flickrPhotos.photos?.photo {
@@ -47,9 +55,9 @@ struct PhotoListView: View {
                         }
                     }
                 }
-                .listStyle(PlainListStyle())
             }
         }
+        .background(Color.gray.opacity(0.1))
         .task {
             do { 
                 try await viewModel.getPhotos(searchText: "yorkshire")
@@ -57,8 +65,6 @@ struct PhotoListView: View {
                 print("invalid url")
             }
         }
-        .padding()
-        .background(Color.gray.opacity(0.3))
     }
 }
 
