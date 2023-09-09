@@ -13,7 +13,6 @@ class PhotosViewModel: ObservableObject {
     
     @Published var flickrPhotos = Flickr()
     
-    
     init(apiKey: String = ProcessInfo.processInfo.environment["FLICKR_API_KEY"] ?? "",
          text: String = "smallsnail") {
         self.apiKey = apiKey
@@ -27,7 +26,7 @@ class PhotosViewModel: ObservableObject {
         case invalidData
     }
     
-    func getPhotos() async throws -> Flickr {
+    @MainActor func getPhotos() async throws -> Flickr {
         let url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&tags&tag_mode=all&text=\(text)&safe_search=1&format=json&nojsoncallback=1"
         
         guard let url = URL(string: url) else { throw ApiError.invalidUrl }
@@ -37,15 +36,10 @@ class PhotosViewModel: ObservableObject {
         guard let response = response as? HTTPURLResponse,response.statusCode == 200 else {
             throw ApiError.invalidResponse
         }
-            if let dataString = String(data: data, encoding: .utf8) {
-                print("got dataString: \n\(dataString)")
-            }
-        
         do {
             let decoder = JSONDecoder()
             let decodedResponse = try decoder.decode(Flickr.self, from: data)
             self.flickrPhotos = decodedResponse
-            print("decodedResponse: \(decodedResponse)")
             return decodedResponse
         } catch {
             throw ApiError.invalidData

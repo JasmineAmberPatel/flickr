@@ -9,30 +9,17 @@ import SwiftUI
 
 struct PhotoView: View {
     @ObservedObject var viewModel: PhotosViewModel
-    
-    init(_ viewModel: PhotosViewModel) {
-        self.viewModel = viewModel
-    }
+    let photo: PhotoElement
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            AsyncImage(url: URL(string: viewModel.flickrPhotos.photos?.photo?.first?.photoUrl ?? "")) { image in
+            AsyncImage(url: URL(string: photo.photoUrl)) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
-                Rectangle()
-            }
-            .frame(width: 300, height: 300)
-            .background(Color.gray.opacity(0.3))
-            
-            Text(viewModel.flickrPhotos.photos?.photo?.first?.title ?? "")
-        }
-        .task {
-            do {
-                try await viewModel.getPhotos()
-            } catch {
-                print("invalid url")
+                ProgressView()
+                    .frame(width: 100, height: 100)
             }
         }
     }
@@ -40,6 +27,6 @@ struct PhotoView: View {
 
 //struct PhotoView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PhotoView(photos: Photos)
+//        PhotoView(PhotosViewModel())
 //    }
 //}

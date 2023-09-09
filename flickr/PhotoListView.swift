@@ -13,23 +13,38 @@ struct PhotoListView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-        // MARK: Search bar
+            // MARK: Search bar
             HStack {
                 TextField("Search", text: $searchText)
                     .textFieldStyle(.roundedBorder)
             }
             .padding()
             
-            PhotoView(viewModel)
-            
-            Spacer()
+            NavigationView  {
+                List {
+                    if let photos = viewModel.flickrPhotos.photos?.photo {
+                        ForEach(photos, id: \.self) { photo in
+                            PhotoView(viewModel: viewModel, photo: photo)
+                        }
+                    }
+                }
+                .listStyle(PlainListStyle())
+            }
         }
+        .task {
+            do { 
+                try await viewModel.getPhotos()
+            } catch {
+                print("invalid url")
+            }
+        }
+        .padding()
         .background(Color.gray.opacity(0.3))
     }
 }
 
 //struct PhotoListView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PhotoListView()
+//        PhotoListView(viewModel: PhotosViewModel(photo: PhotoElement()))
 //    }
 //}

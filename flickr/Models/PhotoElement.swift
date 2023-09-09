@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PhotoElement: Codable {
+struct PhotoElement: Codable, Hashable {
     var id: String = ""
     var secret: String = ""
     var server: String = ""
