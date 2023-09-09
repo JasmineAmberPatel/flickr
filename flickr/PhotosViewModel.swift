@@ -15,7 +15,7 @@ class PhotosViewModel: ObservableObject {
     
     
     init(apiKey: String = ProcessInfo.processInfo.environment["FLICKR_API_KEY"] ?? "",
-         text: String = "halfasleep") {
+         text: String = "smallsnail") {
         self.apiKey = apiKey
         self.text = text
     }
@@ -28,7 +28,7 @@ class PhotosViewModel: ObservableObject {
     }
     
     func getPhotos() async throws -> Flickr {
-        let url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&text=\(text)&safe_search=1&format=json&nojsoncallback=1"
+        let url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&tags&tag_mode=all&text=\(text)&safe_search=1&format=json&nojsoncallback=1"
         
         guard let url = URL(string: url) else { throw ApiError.invalidUrl }
         
@@ -44,6 +44,7 @@ class PhotosViewModel: ObservableObject {
         do {
             let decoder = JSONDecoder()
             let decodedResponse = try decoder.decode(Flickr.self, from: data)
+            self.flickrPhotos = decodedResponse
             print("decodedResponse: \(decodedResponse)")
             return decodedResponse
         } catch {
