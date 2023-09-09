@@ -13,6 +13,9 @@ struct PhotoListView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
+            Text("Image Search")
+                .font(.title)
+                .bold()
             // MARK: Search bar
             HStack {
                 TextField("Search", text: $searchText)
