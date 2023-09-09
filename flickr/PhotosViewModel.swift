@@ -26,8 +26,8 @@ class PhotosViewModel: ObservableObject {
         case invalidData
     }
     
-    @MainActor func getPhotos() async throws -> Flickr {
-        let url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&tags&tag_mode=all&text=\(text)&safe_search=1&format=json&nojsoncallback=1"
+    @MainActor func getPhotos(searchText: String) async throws -> Flickr {
+        let url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&tags&tag_mode=all&text=\(searchText)&safe_search=1&format=json&nojsoncallback=1"
         
         guard let url = URL(string: url) else { throw ApiError.invalidUrl }
         
