@@ -19,12 +19,15 @@ struct PhotoListView: View {
                     .textFieldStyle(.roundedBorder)
             }
             .padding()
-            
-            NavigationView  {
+            NavigationView {
                 List {
                     if let photos = viewModel.flickrPhotos.photos?.photo {
                         ForEach(photos, id: \.self) { photo in
-                            PhotoView(viewModel: viewModel, photo: photo)
+                            NavigationLink {
+                                PhotoDetailView(photo: photo, viewModel: viewModel)
+                            } label: {
+                                PhotoView(viewModel: viewModel, photo: photo)
+                            }
                         }
                     }
                 }
