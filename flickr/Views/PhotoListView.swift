@@ -10,7 +10,7 @@ import SwiftUI
 struct PhotoListView: View {
     @State private var searchText: String = ""
     @FocusState private var textField: Bool
-    @ObservedObject private var viewModel = PhotosViewModel()
+    @ObservedObject var viewModel: PhotosViewModel
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -19,7 +19,7 @@ struct PhotoListView: View {
             Text("Image Search")
                 .font(.title)
                 .bold()
-        
+            
             // MARK: Search bar
             HStack(spacing: 0) {
                 Image(systemName: "magnifyingglass")
@@ -33,7 +33,7 @@ struct PhotoListView: View {
                     .onSubmit {
                         Task {
                             do {
-                                try await viewModel.getPhotos(searchText: searchText)
+                                try await viewModel.searchPhotos(searchText: searchText)
                             } catch {
                                 print("invalid url")
                             }
@@ -59,8 +59,8 @@ struct PhotoListView: View {
         }
         .background(Color.gray.opacity(0.1))
         .task {
-            do { 
-                try await viewModel.getPhotos(searchText: "yorkshire")
+            do {
+                try await viewModel.searchPhotos(searchText: "yorkshire")
             } catch {
                 print("invalid url")
             }

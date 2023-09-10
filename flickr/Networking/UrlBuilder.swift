@@ -13,7 +13,7 @@ struct UrlBuilder {
     private var path: String = "/services/rest/"
     private var finalQueryString: String = "&safe_search=1&format=json&nojsoncallback=1"
     
-    mutating func urlBuilder(method: String, params: String) -> String {
+    mutating func urlString(method: String, params: String) -> String {
         return ("\(host)\(path)?method=\(method)&api_key=\(apiKey)\(params)\(finalQueryString)")
     }
 }

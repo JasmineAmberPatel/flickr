@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhotoView: View {
     @ObservedObject var viewModel: PhotosViewModel
+    
     let photo: PhotoElement
     
     var body: some View {

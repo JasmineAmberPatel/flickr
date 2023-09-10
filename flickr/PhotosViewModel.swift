@@ -6,36 +6,31 @@
 //
 
 import Foundation
+import SwiftUI
 
 class PhotosViewModel: ObservableObject {
-    private var apiKey: String = ProcessInfo.processInfo.environment["FLICKR_API_KEY"] ?? ""
-    var text: String = "yorkshire"
+    private var urlBuilder = UrlBuilder()
+    private var flickrService: FlickrService
     
-    @Published var flickrPhotos = Flickr()
-    
-    enum ApiError: Error {
-        case invalidUrl
-        case invalidResponse
-        case invalidData
+    @Published var flickrPhotos: Flickr
+
+    init(urlBuilder: UrlBuilder = UrlBuilder(),
+         flickrService: FlickrService = FlickrService(),
+         flickrPhotos: Flickr = Flickr()) {
+        self.urlBuilder = urlBuilder
+        self.flickrService = flickrService
+        self.flickrPhotos = flickrPhotos
     }
     
-    @MainActor func getPhotos(searchText: String) async throws -> Flickr {
-        let url = "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&tags&tag_mode=all&text=\(searchText)&safe_search=1&format=json&nojsoncallback=1"
+    @MainActor @discardableResult func searchPhotos(searchText: String) async throws -> Result<Flickr, APIError> {
+        let url = urlBuilder.urlString(method: "flickr.photos.search", params: "&tags=tags&tag_mode=all&text=\(searchText)")
         
-        guard let url = URL(string: url) else { throw ApiError.invalidUrl }
-        
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let response = response as? HTTPURLResponse,response.statusCode == 200 else {
-            throw ApiError.invalidResponse
-        }
-        do {
-            let decoder = JSONDecoder()
-            let decodedResponse = try decoder.decode(Flickr.self, from: data)
-            self.flickrPhotos = decodedResponse
-            return decodedResponse
-        } catch {
-            throw ApiError.invalidData
+        switch try await flickrService.fetch(Flickr.self, url: url) {
+        case .success(let photos):
+            flickrPhotos = photos
+            return Result.success(photos)
+        case .failure(let error):
+            return Result.failure(error)
         }
     }
 }
