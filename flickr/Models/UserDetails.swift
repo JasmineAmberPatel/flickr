@@ -10,32 +10,31 @@ import Foundation
 // MARK: UserDetails
 struct UserDetails: Codable {
     var person: Person?
-    var stat: String = ""
 }
 
 // MARK: Person
 struct Person: Codable {
     var id: String = ""
-    var nsid: String = ""
-    var iconserver: String = ""
-    var iconfarm: Int = 0
+    var nsId: String = ""
+    var iconServer: String = ""
+    var iconFarm: Int = 0
     var username: Description = Description(content: "")
-    var photosurl: Description = Description(content: "")
-    var profileurl: Description = Description(content: "")
-    var photos: Photos = Photos(firstdatetaken: Description(content: ""))
+    var photosUrl: Description = Description(content: "")
+    var profileUrl: Description = Description(content: "")
+    var photos: Photos = Photos(firstDateTaken: Description(content: ""))
     
     var iconUrl: String {
-        return "https://farm\(iconfarm).staticflickr.com/\(iconserver)/buddyicons/\(id).jpg"
+        return "https://farm\(iconFarm).staticflickr.com/\(iconServer)/buddyicons/\(id).jpg"
     }
     
     enum CodingKeys: String, CodingKey {
         case id
-        case nsid
-        case iconserver
-        case iconfarm
+        case nsId = "nsid"
+        case iconServer = "iconserver"
+        case iconFarm = "iconfarm"
         case username
-        case photosurl
-        case profileurl
+        case photosUrl = "photosurl"
+        case profileUrl = "profileurl"
         case photos
     }
 }
@@ -51,5 +50,9 @@ struct Description: Codable {
 
 // MARK: Photos
 struct Photos: Codable {
-    var firstdatetaken: Description = Description(content: "")
+    var firstDateTaken: Description = Description(content: "")
+    
+    enum CodingKeys: String, CodingKey {
+        case firstDateTaken = "firstdatetaken"
+    }
 }
