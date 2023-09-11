@@ -44,12 +44,13 @@ struct PhotoDetailView: View {
             HStack(spacing: 0) {
                 Text("Photo taken by: ")
                     .bold()
-                Text(userDetails.person?.username.content ?? "")
+                Text(userDetails.person?.username.content ?? "No username available")
             }
             HStack(spacing: 0) {
                 Text("Date: ")
                     .bold()
-                Text(dateFormatter.string(from: dateFormatter.date(from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
+                Text(dateFormatter.string(from: dateFormatter.date(
+                    from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
             }
             
             // MARK: Tags

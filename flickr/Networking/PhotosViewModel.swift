@@ -12,29 +12,29 @@ class PhotosViewModel: ObservableObject {
     private var urlBuilder = UrlBuilder()
     private var flickrService: FlickrService
     
-    @Published var flickrPhotos: Flickr
+    @Published var photoSearch: PhotoSearch
     @Published var userDetails: UserDetails
     @Published var imageDetails: ImageDetails
 
     init(urlBuilder: UrlBuilder = UrlBuilder(),
          flickrService: FlickrService = FlickrService(),
-         flickrPhotos: Flickr = Flickr(),
+         photoSearch: PhotoSearch = PhotoSearch(),
          userDetails: UserDetails = UserDetails(),
          imageDetails: ImageDetails = ImageDetails()) {
         self.urlBuilder = urlBuilder
         self.flickrService = flickrService
-        self.flickrPhotos = flickrPhotos
+        self.photoSearch = photoSearch
         self.userDetails = userDetails
         self.imageDetails = imageDetails
     }
     
-    @MainActor @discardableResult func getPhotos(searchText: String) async throws -> Result<Flickr, APIError> {
+    @MainActor @discardableResult func getPhotos(searchText: String) async throws -> Result<PhotoSearch, APIError> {
         let url = urlBuilder.urlString(method: "flickr.photos.search",
                                        params: "&tags=tags&tag_mode=all&text=\(searchText)&safe_search=1")
         
-        switch try await flickrService.fetch(Flickr.self, url: url) {
+        switch try await flickrService.fetch(PhotoSearch.self, url: url) {
         case .success(let photos):
-            flickrPhotos = photos
+            photoSearch = photos
             return Result.success(photos)
         case .failure(let error):
             return Result.failure(error)

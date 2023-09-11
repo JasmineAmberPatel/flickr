@@ -17,7 +17,7 @@ struct PhotoListView: View {
             // MARK: Image list
             NavigationView {
                 List {
-                    if let photos = viewModel.flickrPhotos.photos?.photo {
+                    if let photos = viewModel.photoSearch.photos?.photo {
                         ForEach(photos, id: \.self) { photo in
                             NavigationLink {
                                 PhotoDetailView(photo: photo,

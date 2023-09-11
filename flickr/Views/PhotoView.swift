@@ -38,8 +38,9 @@ struct PhotoView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
-                ProgressView()
-                    .frame(width: 100, height: 100)
+                Rectangle()
+                    .frame(width: 200, height: 200)
+                    .background(Color.gray.opacity(0.2))
             }
             .padding(10)
         }

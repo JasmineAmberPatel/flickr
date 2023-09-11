@@ -1,5 +1,5 @@
 //
-//  Flickr.swift
+//  PhotoSearch.swift
 //  flickr
 //
 //  Created by Jasmine Patel on 08/09/2023.
@@ -7,10 +7,9 @@
 
 import Foundation
 
-// MARK: Flickr
-struct Flickr: Codable {
+// MARK: PhotoSearch
+struct PhotoSearch: Codable {
     var photos: PhotosList?
-    var stat: String = ""
 }
 
 // MARK: PhotosList
@@ -29,5 +28,5 @@ struct PhotoElement: Codable, Hashable {
     
     var photoUrl: String {
         return "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret).jpg"
-    }    
+    }
 }

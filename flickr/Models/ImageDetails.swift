@@ -10,7 +10,6 @@ import Foundation
 // MARK: ImageDetails
 struct ImageDetails: Codable {
     var photo: Photo?
-    var stat: String = ""
 }
 
 // MARK: - Photo
