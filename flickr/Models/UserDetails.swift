@@ -25,7 +25,7 @@ struct Person: Codable {
     var photos: Photos = Photos(firstdatetaken: Description(content: ""))
     
     var iconUrl: String {
-        return "https://farm\(iconfarm).staticflickr.com/\(iconserver)/buddyicons\(id).jpg"
+        return "https://farm\(iconfarm).staticflickr.com/\(iconserver)/buddyicons/\(id).jpg"
     }
     
     enum CodingKeys: String, CodingKey {

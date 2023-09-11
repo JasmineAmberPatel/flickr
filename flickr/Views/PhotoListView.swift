@@ -40,7 +40,7 @@ struct PhotoListView: View {
                         }
                     }
             }
-            .padding()
+            .padding(10)
             
             // MARK: Image list
             NavigationView {
@@ -48,7 +48,9 @@ struct PhotoListView: View {
                     if let photos = viewModel.flickrPhotos.photos?.photo {
                         ForEach(photos, id: \.self) { photo in
                             NavigationLink {
-                                PhotoDetailView(photo: photo, viewModel: viewModel)
+                                PhotoDetailView(photo: photo,
+                                                userDetails: viewModel.userDetails,
+                                                viewModel: viewModel)
                             } label: {
                                 PhotoView(viewModel: viewModel, photo: photo)
                             }

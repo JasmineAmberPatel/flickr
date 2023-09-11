@@ -95,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				D51A15E92AA7CC9400C4C7EE /* flickr */,
+				D51A15F02AA7CC9500C4C7EE /* Preview Content */,
 				D51A16042AA7CC9500C4C7EE /* flickrUITests */,
 				D51A15E82AA7CC9400C4C7EE /* Products */,
 			);
@@ -113,13 +114,12 @@
 		D51A15E92AA7CC9400C4C7EE /* flickr */ = {
 			isa = PBXGroup;
 			children = (
+				D51A15EE2AA7CC9500C4C7EE /* Assets.xcassets */,
 				D5630DF02AAE50A100C9FCDE /* FlickrApp */,
+				D51A15FA2AA7CC9500C4C7EE /* flickrTests */,
+				D51A161A2AA89B0800C4C7EE /* Models */,
 				D5630DE92AACB46200C9FCDE /* Networking */,
 				D5630DE62AACAC3D00C9FCDE /* Views */,
-				D51A161A2AA89B0800C4C7EE /* Models */,
-				D51A15FA2AA7CC9500C4C7EE /* flickrTests */,
-				D51A15EE2AA7CC9500C4C7EE /* Assets.xcassets */,
-				D51A15F02AA7CC9500C4C7EE /* Preview Content */,
 			);
 			path = flickr;
 			sourceTree = "<group>";
