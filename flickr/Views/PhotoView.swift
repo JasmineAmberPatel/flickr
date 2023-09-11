@@ -14,6 +14,7 @@ struct PhotoView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
+            // MARK: User icon and name
             HStack {
                 AsyncImage(url: URL(string: viewModel.userDetails.person?.iconUrl ?? "")) { image in
                     image
@@ -30,6 +31,8 @@ struct PhotoView: View {
                 Spacer()
             }
             .padding(.leading, 10)
+            
+            // MARK: Photo
             AsyncImage(url: URL(string: photo.photoUrl)) { image in
                 image
                     .resizable()

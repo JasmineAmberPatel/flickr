@@ -72,7 +72,7 @@ struct PhotoListView: View {
             do {
                 try await viewModel.getPhotos(searchText: "yorkshire")
             } catch {
-                print("failing get photos request")
+                print("Failing getPhotos request")
             }
         }
     }

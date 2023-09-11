@@ -22,16 +22,25 @@ struct PhotoDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            // MARK: Photo title
             Text(photo.title)
                 .bold()
-            AsyncImage(url: URL(string: photo.photoUrl)) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                ProgressView()
-                    .frame(width: 100, height: 100)
+            
+            // MARK: Photo
+            HStack {
+                Spacer()
+                AsyncImage(url: URL(string: photo.photoUrl)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ProgressView()
+                        .frame(width: 100, height: 100)
+                }
+                Spacer()
             }
+            
+            // MARK: Photo details
             HStack(spacing: 0) {
                 Text("Photo taken by: ")
                     .bold()
@@ -42,6 +51,8 @@ struct PhotoDetailView: View {
                     .bold()
                 Text(dateFormatter.string(from: dateFormatter.date(from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
             }
+            
+            // MARK: Tags
             ScrollView {
                 if let tags = imageDetails.photo?.tags?.tag {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 8) {
@@ -53,6 +64,7 @@ struct PhotoDetailView: View {
                     }
                 }
             }
+            
             Spacer()
         }
         .padding(10)
@@ -60,7 +72,7 @@ struct PhotoDetailView: View {
             do {
                 try await viewModel.getImageDetails(photoId: photo.id)
             } catch {
-                print("invalid url")
+                print("Failing getImageDetails request")
             }
         }
     }
