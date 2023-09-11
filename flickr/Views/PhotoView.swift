@@ -23,6 +23,17 @@ struct PhotoView: View {
                     .frame(width: 100, height: 100)
             }
             .padding()
+            HStack {
+                AsyncImage(url: URL(string: viewModel.userDetails.person?.iconUrl ?? "")) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 30, height: 30)
+                Text(viewModel.userDetails.person?.username.content ?? "")
+            }
         }
     }
 }
