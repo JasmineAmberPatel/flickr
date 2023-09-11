@@ -24,6 +24,7 @@
 		D5630DEF2AAE506B00C9FCDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5630DEE2AAE506B00C9FCDE /* ContentView.swift */; };
 		D5630DF42AAE5DB500C9FCDE /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5630DF32AAE5DB500C9FCDE /* UserDetails.swift */; };
 		D5630DF62AAE682600C9FCDE /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5630DF52AAE682600C9FCDE /* PhotoInfo.swift */; };
+		D5630DFB2AAF3F8000C9FCDE /* ImageDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5630DFA2AAF3F8000C9FCDE /* ImageDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		D5630DEE2AAE506B00C9FCDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D5630DF32AAE5DB500C9FCDE /* UserDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		D5630DF52AAE682600C9FCDE /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
+		D5630DFA2AAF3F8000C9FCDE /* ImageDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				D5630DDC2AAB16A100C9FCDE /* Flickr.swift */,
 				D5630DF32AAE5DB500C9FCDE /* UserDetails.swift */,
 				D5630DF52AAE682600C9FCDE /* PhotoInfo.swift */,
+				D5630DFA2AAF3F8000C9FCDE /* ImageDetails.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				D5630DEB2AACB47900C9FCDE /* APIError.swift in Sources */,
 				D5630DED2AACBBB600C9FCDE /* UrlBuilder.swift in Sources */,
 				D5630DF42AAE5DB500C9FCDE /* UserDetails.swift in Sources */,
+				D5630DFB2AAF3F8000C9FCDE /* ImageDetails.swift in Sources */,
 				D5630DE12AAB356D00C9FCDE /* PhotoView.swift in Sources */,
 				D51A15EB2AA7CC9400C4C7EE /* flickrApp.swift in Sources */,
 				D5630DDF2AAB176A00C9FCDE /* PhotosViewModel.swift in Sources */,

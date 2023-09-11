@@ -14,15 +14,18 @@ class PhotosViewModel: ObservableObject {
     
     @Published var flickrPhotos: Flickr
     @Published var userDetails: UserDetails
+    @Published var imageDetails: ImageDetails
 
     init(urlBuilder: UrlBuilder = UrlBuilder(),
          flickrService: FlickrService = FlickrService(),
          flickrPhotos: Flickr = Flickr(),
-         userDetails: UserDetails = UserDetails()) {
+         userDetails: UserDetails = UserDetails(),
+         imageDetails: ImageDetails = ImageDetails()) {
         self.urlBuilder = urlBuilder
         self.flickrService = flickrService
         self.flickrPhotos = flickrPhotos
         self.userDetails = userDetails
+        self.imageDetails = imageDetails
     }
     
     @MainActor @discardableResult func getPhotos(searchText: String) async throws -> Result<Flickr, APIError> {
@@ -43,6 +46,18 @@ class PhotosViewModel: ObservableObject {
         switch try await flickrService.fetch(UserDetails.self, url: url) {
         case .success(let details):
             userDetails = details
+            return Result.success(details)
+        case .failure(let error):
+            print(error)
+            return Result.failure(error)
+        }
+    }
+    
+    @MainActor @discardableResult func getImageDetails(photoId: String) async throws -> Result<ImageDetails, APIError> {
+        let url = urlBuilder.urlString(method: "flickr.photos.getInfo", params: "&photo_id=\(photoId)")
+        switch try await flickrService.fetch(ImageDetails.self, url: url) {
+        case .success(let details):
+            imageDetails = details
             return Result.success(details)
         case .failure(let error):
             print(error)
