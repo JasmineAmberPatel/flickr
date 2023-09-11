@@ -10,6 +10,7 @@ import SwiftUI
 struct PhotoDetailView: View {
     let photo: PhotoElement
     let userDetails: UserDetails
+    let imageDetails: ImageDetails
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -39,20 +40,37 @@ struct PhotoDetailView: View {
             HStack(spacing: 0) {
                 Text("Date: ")
                     .bold()
-                Text(dateFormatter.string(from: dateFormatter.date(from: userDetails.person?.photos.firstdatetaken.content ?? "") ?? Date()))
+                Text(dateFormatter.string(from: dateFormatter.date(from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
+            }
+            ScrollView {
+                if let tags = imageDetails.photo?.tags?.tag {
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 8) {
+                        ForEach(tags, id: \.id) { tag in
+                            Text("#\(tag.raw)")
+                                .padding(2)
+                                .background(Color.gray.opacity(0.2))
+                        }
+                    }
+                }
             }
             Spacer()
         }
         .padding(10)
-        
+        .task {
+            do {
+                try await viewModel.getImageDetails(photoId: photo.id)
+            } catch {
+                print("invalid url")
+            }
+        }
     }
 }
 
-struct PhotoDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotoDetailView(photo: PhotoElement(),
-                        userDetails: UserDetails(),
-                        viewModel: PhotosViewModel())
-    }
-}
+//struct PhotoDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PhotoDetailView(photo: PhotoElement(),
+//                        userDetails: UserDetails(),
+//                        viewModel: PhotosViewModel())
+//    }
+//}
 

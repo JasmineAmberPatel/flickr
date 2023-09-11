@@ -50,6 +50,7 @@ struct PhotoListView: View {
                             NavigationLink {
                                 PhotoDetailView(photo: photo,
                                                 userDetails: viewModel.userDetails,
+                                                imageDetails: viewModel.imageDetails,
                                                 viewModel: viewModel)
                             } label: {
                                 PhotoView(viewModel: viewModel, photo: photo)

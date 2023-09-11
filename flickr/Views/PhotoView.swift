@@ -21,7 +21,8 @@ struct PhotoView: View {
                         .aspectRatio(contentMode: .fit)
                         .clipShape(Circle())
                 } placeholder: {
-                    ProgressView()
+                    Circle()
+                        .foregroundColor(Color.gray.opacity(0.1))
                 }
                 .frame(width: 30, height: 30)
                 Text(viewModel.userDetails.person?.username.content ?? "")
