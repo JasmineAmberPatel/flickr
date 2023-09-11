@@ -67,6 +67,7 @@ struct PhotoDetailView: View {
             
             Spacer()
         }
+        .navigationBarTitleDisplayMode(.inline)
         .padding(10)
         .task {
             do {

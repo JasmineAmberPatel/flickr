@@ -14,34 +14,6 @@ struct PhotoListView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            
-            // MARK: Title
-            Text("Image Search")
-                .font(.title)
-                .bold()
-            
-            // MARK: Search bar
-            HStack(spacing: 0) {
-                Image(systemName: "magnifyingglass")
-                    .font(.system(size: 25))
-                    .padding(.trailing, 10)
-                TextField("Search", text: $searchText)
-                    .focused($textField)
-                    .textFieldStyle(.roundedBorder)
-                    .submitLabel(.done)
-                    .keyboardType(.namePhonePad)
-                    .onSubmit {
-                        Task {
-                            do {
-                                try await viewModel.getPhotos(searchText: searchText)
-                            } catch {
-                                print("invalid url")
-                            }
-                        }
-                    }
-            }
-            .padding(10)
-            
             // MARK: Image list
             NavigationView {
                 List {
@@ -65,6 +37,17 @@ struct PhotoListView: View {
                         }
                     }
                 }
+                .navigationTitle("Image Search")
+                .searchable(text: $searchText)
+                .onSubmit(of: .search, {
+                    Task {
+                        do {
+                            try await viewModel.getPhotos(searchText: searchText)
+                        } catch {
+                            print("invalid url")
+                        }
+                    }
+                })
             }
         }
         .background(Color.gray.opacity(0.1))
