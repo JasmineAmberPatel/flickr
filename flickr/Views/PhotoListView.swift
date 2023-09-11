@@ -61,8 +61,8 @@ struct PhotoListView: View {
     }
 }
 
-//struct PhotoListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PhotoListView(viewModel: PhotosViewModel(photo: PhotoElement()))
-//    }
-//}
+struct PhotoListView_Previews: PreviewProvider {
+    static var previews: some View {
+        PhotoListView(viewModel: PhotosViewModel())
+    }
+}

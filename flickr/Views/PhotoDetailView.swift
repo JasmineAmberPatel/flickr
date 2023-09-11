@@ -80,11 +80,12 @@ struct PhotoDetailView: View {
     }
 }
 
-//struct PhotoDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PhotoDetailView(photo: PhotoElement(),
-//                        userDetails: UserDetails(),
-//                        viewModel: PhotosViewModel())
-//    }
-//}
+struct PhotoDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        PhotoDetailView(photo: PhotoElement(),
+                        userDetails: UserDetails(),
+                        imageDetails: ImageDetails(),
+                        viewModel: PhotosViewModel())
+    }
+}
 
