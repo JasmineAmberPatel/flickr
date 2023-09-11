@@ -33,7 +33,7 @@ struct PhotoListView: View {
                     .onSubmit {
                         Task {
                             do {
-                                try await viewModel.searchPhotos(searchText: searchText)
+                                try await viewModel.getPhotos(searchText: searchText)
                             } catch {
                                 print("invalid url")
                             }
@@ -52,6 +52,13 @@ struct PhotoListView: View {
                             } label: {
                                 PhotoView(viewModel: viewModel, photo: photo)
                             }
+                            .task {
+                                do {
+                                    try await viewModel.getUserDetails(userId: photo.owner)
+                                } catch {
+                                    print("failing get user details request")
+                                }
+                            }
                         }
                     }
                 }
@@ -60,9 +67,9 @@ struct PhotoListView: View {
         .background(Color.gray.opacity(0.1))
         .task {
             do {
-                try await viewModel.searchPhotos(searchText: "yorkshire")
+                try await viewModel.getPhotos(searchText: "yorkshire")
             } catch {
-                print("invalid url")
+                print("failing get photos request")
             }
         }
     }

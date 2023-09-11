@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PhotoDetailView: View {
     let photo: PhotoElement
+    
     @ObservedObject var viewModel: PhotosViewModel
     
     var body: some View {
@@ -24,7 +25,8 @@ struct PhotoDetailView: View {
 
 struct PhotoDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoDetailView(photo: PhotoElement(), viewModel: PhotosViewModel())
+        PhotoDetailView(photo: PhotoElement(),
+                        viewModel: PhotosViewModel())
     }
 }
 
