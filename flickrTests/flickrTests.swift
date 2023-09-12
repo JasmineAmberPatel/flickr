@@ -53,5 +53,22 @@ class FlickrServiceTests: XCTestCase {
             XCTFail("Unexpected error thrown: \(error)")
         }
     }
-    
+
+    func testGetPhotosFailure() async throws {
+        let searchText = "yorkshire"
+        let expectedError = APIError.mockError
+        
+        mockFlickrService.setFetchResult(result: Result<PhotoSearch, APIError>.failure(expectedError))
+        
+        do {
+            switch try await sut.getPhotos(searchText: searchText) {
+            case .success:
+                XCTFail("Expecting failure, but got success")
+            case .failure(let error):
+                XCTAssertEqual(error, expectedError, "Expected error to be \(expectedError), but got \(error)")
+            }
+        } catch {
+            XCTFail("Unexpected error thrown: \(error)")
+        }
+    }
 }

@@ -39,3 +39,27 @@ enum APIError: Error {
         }
     }
 }
+
+extension APIError: Equatable {
+    static func == (lhs: APIError, rhs: APIError) -> Bool {
+        switch (lhs, rhs) {
+        case (.invalidUrl, .invalidUrl):
+            return true
+        case (.parsing(let lhsError), .parsing(let rhsError)):
+            // Here we're checking for nil and then comparing the errors
+            if let lhsError = lhsError, let rhsError = rhsError {
+                return lhsError.localizedDescription == rhsError.localizedDescription
+            } else {
+                return lhsError == nil && rhsError == nil
+            }
+        case (.unknown, .unknown):
+            return true
+        case (.badResponse(let lhsStatusCode), .badResponse(let rhsStatusCode)):
+            return lhsStatusCode == rhsStatusCode
+        case (.mockError, .mockError):
+            return true
+        default:
+            return false
+        }
+    }
+}
