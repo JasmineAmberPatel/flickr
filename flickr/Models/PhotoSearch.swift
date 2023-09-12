@@ -8,12 +8,16 @@
 import Foundation
 
 // MARK: PhotoSearch
-struct PhotoSearch: Codable {
+struct PhotoSearch: Codable, Equatable {
+    static func == (lhs: PhotoSearch, rhs: PhotoSearch) -> Bool {
+        return lhs.photos == rhs.photos
+    }
+    
     var photos: PhotosList?
 }
 
 // MARK: PhotosList
-struct PhotosList: Codable {
+struct PhotosList: Codable, Equatable {
     var photo: [PhotoElement]?
 }
 

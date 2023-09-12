@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct FlickrService {
+protocol FlickrServiceProtocol {
+    func fetch<T: Decodable>(_ type: T.Type, url: String) async throws -> Result<T, APIError>
+}
+
+struct FlickrService: FlickrServiceProtocol {
     
     func fetch<T: Decodable>(_ type: T.Type, url: String) async throws -> Result<T, APIError> {
 

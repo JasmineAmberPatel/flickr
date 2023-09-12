@@ -12,6 +12,7 @@ enum APIError: Error {
     case parsing(DecodingError?)
     case unknown
     case badResponse(statusCode: URLResponse)
+    case mockError
     
     // MARK: User error messages
     var errorMessage: String {
@@ -20,6 +21,7 @@ enum APIError: Error {
             return "Sorry, something went wrong."
         case .badResponse(_):
             return "Sorry, the connection to our server failed."
+        case .mockError: return ""
         }
     }
     
@@ -33,6 +35,7 @@ enum APIError: Error {
         case .unknown: return "unknown error"
         case .badResponse(statusCode: let statusCode):
             return "bad response with status code \(statusCode)"
+        case .mockError: return "error from mock fetch request"
         }
     }
 }

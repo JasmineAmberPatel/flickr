@@ -10,14 +10,14 @@ import SwiftUI
 
 class PhotosViewModel: ObservableObject {
     private var urlBuilder = UrlBuilder()
-    private var flickrService: FlickrService
+    private var flickrService: FlickrServiceProtocol
     
     @Published var photoSearch: PhotoSearch
     @Published var userDetails: UserDetails
     @Published var imageDetails: ImageDetails
 
     init(urlBuilder: UrlBuilder = UrlBuilder(),
-         flickrService: FlickrService = FlickrService(),
+         flickrService: FlickrServiceProtocol = FlickrService(),
          photoSearch: PhotoSearch = PhotoSearch(),
          userDetails: UserDetails = UserDetails(),
          imageDetails: ImageDetails = ImageDetails()) {
