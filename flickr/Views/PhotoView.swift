@@ -40,7 +40,7 @@ struct PhotoView: View {
             } placeholder: {
                 Rectangle()
                     .frame(width: 200, height: 200)
-                    .background(Color.gray.opacity(0.2))
+                    .foregroundColor(Color.gray.opacity(0.2))
             }
             .padding(10)
         }
