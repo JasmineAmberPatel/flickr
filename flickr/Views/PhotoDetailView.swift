@@ -21,66 +21,69 @@ struct PhotoDetailView: View {
     @ObservedObject var viewModel: PhotosViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            // MARK: Photo title
-            Text(photo.title)
-                .bold()
-            
-            // MARK: Photo
-            HStack {
-                Spacer()
-                AsyncImage(url: URL(string: photo.photoUrl)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                } placeholder: {
-                    ProgressView()
-                        .frame(width: 100, height: 100)
+        ScrollView {
+            VStack(alignment: .leading) {
+                // MARK: Photo title
+                Text(photo.title)
+                    .bold()
+                
+                // MARK: Photo
+                HStack {
+                    Spacer()
+                    AsyncImage(url: URL(string: photo.photoUrl)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } placeholder: {
+                        ProgressView()
+                            .frame(width: 100, height: 100)
+                    }
+                    Spacer()
                 }
-                Spacer()
-            }
-            
-            // MARK: Photo details
-            HStack(spacing: 0) {
-                Text("Photo taken by: ")
-                    .bold()
-                Text(userDetails.person?.username.content ?? "No username available")
-            }
-            HStack(spacing: 0) {
-                Text("Date: ")
-                    .bold()
-                Text(dateFormatter.string(from: dateFormatter.date(
-                    from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
-            }
-            
-            // MARK: Tags
-            FlowLayout {
-                if let tags = imageDetails.photo?.tags?.tag {
-                    ForEach(tags, id: \.id) { tag in
-                        HStack {
-                            Text("#\(tag.raw)")
-                                .fixedSize()
+                
+                // MARK: Photo details
+                HStack(spacing: 0) {
+                    Text("Photo taken by: ")
+                        .bold()
+                    Text(userDetails.person?.username.content ?? "No username available")
+                }
+                HStack(spacing: 0) {
+                    Text("Date: ")
+                        .bold()
+                    Text(dateFormatter.string(from: dateFormatter.date(
+                        from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
+                }
+                
+                // MARK: Tags
+                FlowLayout {
+                    if let tags = imageDetails.photo?.tags?.tag {
+                        ForEach(tags, id: \.id) { tag in
+                            HStack {
+                                Text("#\(tag.raw)")
+                                    .font(.caption)
+                                    .fixedSize()
+                            }
+                            .padding(6)
+                            .background(
+                                Capsule()
+                                    .stroke(Color.black)
+                                    .background(Capsule().fill(Color.gray.opacity(0.2)))
+                            )
+                            .padding(4)
                         }
-                        .padding(6)
-                        .background(
-                            Capsule()
-                                .stroke(Color.black)
-                                .background(Capsule().fill(Color.gray.opacity(0.2)))
-                        )
-                        .padding(4)
                     }
                 }
+                
+                Spacer()
             }
-            
-            Spacer()
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .padding(10)
-        .task {
-            do {
-                try await viewModel.getImageDetails(photoId: photo.id)
-            } catch {
-                print("Failing getImageDetails request")
+            .navigationBarTitleDisplayMode(.inline)
+            .padding(15)
+            .task {
+                do {
+                    try await viewModel.getImageDetails(photoId: photo.id)
+                } catch {
+                    print("Failing getImageDetails request")
+                }
             }
         }
     }
