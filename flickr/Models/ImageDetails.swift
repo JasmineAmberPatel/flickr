@@ -49,7 +49,7 @@ struct Tags: Codable {
 }
 
 // MARK: - Tag
-struct Tag: Codable {
+struct Tag: Codable, Hashable {
     var id: String = ""
     var raw: String = ""
 

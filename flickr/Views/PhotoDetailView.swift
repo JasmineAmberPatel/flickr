@@ -54,15 +54,21 @@ struct PhotoDetailView: View {
             }
             
             // MARK: Tags
-            ScrollView {
+            FlowLayout {
                 if let tags = imageDetails.photo?.tags?.tag {
-                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 8) {
                         ForEach(tags, id: \.id) { tag in
-                            Text("#\(tag.raw)")
-                                .padding(2)
-                                .background(Color.gray.opacity(0.2))
+                            HStack {
+                                Text("#\(tag.raw)")
+                                    .fixedSize()
+                            }
+                            .padding(4)
+                            .background(
+                                Capsule()
+                                    .fill(Color.gray.opacity(0.2))
+                                
+                            )
+                            .padding(4)
                         }
-                    }
                 }
             }
             
@@ -80,6 +86,64 @@ struct PhotoDetailView: View {
     }
 }
 
+struct FlowLayout: Layout {
+    
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+
+        var totalHeight: CGFloat = 0
+        var totalWidth: CGFloat = 0
+
+        var lineWidth: CGFloat = 0
+        var lineHeight: CGFloat = 0
+
+        for size in sizes {
+            if lineWidth + size.width > proposal.width ?? 0 {
+                totalHeight += lineHeight
+                lineWidth = size.width
+                lineHeight = size.height
+            } else {
+                lineWidth += size.width
+                lineHeight = max(lineHeight, size.height)
+            }
+
+            totalWidth = max(totalWidth, lineWidth)
+        }
+
+        totalHeight += lineHeight
+
+        return .init(width: totalWidth, height: totalHeight)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        let sizes = subviews.map { $0.sizeThatFits(.unspecified) }
+
+        var lineX = bounds.minX
+        var lineY = bounds.minY
+        var lineHeight: CGFloat = 0
+
+        for index in subviews.indices {
+            if lineX + sizes[index].width > (proposal.width ?? 0) {
+                lineY += lineHeight
+                lineHeight = 0
+                lineX = bounds.minX
+            }
+
+            subviews[index].place(
+                at: .init(
+                    x: lineX + sizes[index].width / 2,
+                    y: lineY + sizes[index].height / 2
+                ),
+                anchor: .center,
+                proposal: ProposedViewSize(sizes[index])
+            )
+
+            lineHeight = max(lineHeight, sizes[index].height)
+            lineX += sizes[index].width
+        }
+    }
+}
+
 struct PhotoDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PhotoDetailView(photo: PhotoElement(),
@@ -88,4 +152,3 @@ struct PhotoDetailView_Previews: PreviewProvider {
                         viewModel: PhotosViewModel())
     }
 }
-
