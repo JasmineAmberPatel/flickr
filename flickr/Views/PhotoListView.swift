@@ -53,7 +53,7 @@ struct PhotoListView: View {
         .background(Color.gray.opacity(0.1))
         .task {
             do {
-                try await viewModel.getPhotos(searchText: "yorkshire")
+                try await viewModel.getPhotos(searchText: "trees")
             } catch {
                 print("Failing getPhotos request")
             }
