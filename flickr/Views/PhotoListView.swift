@@ -38,6 +38,7 @@ struct PhotoListView: View {
                     }
                 }
                 .navigationTitle("Image Search")
+                .navigationBarTitleDisplayMode(.inline)
                 .searchable(text: $searchText)
                 .onSubmit(of: .search, {
                     Task {
@@ -50,7 +51,6 @@ struct PhotoListView: View {
                 })
             }
         }
-        .background(Color.gray.opacity(0.1))
         .task {
             do {
                 try await viewModel.getPhotos(searchText: "trees")

@@ -67,7 +67,7 @@ struct PhotoDetailView: View {
                             .background(
                                 Capsule()
                                     .stroke(Color.black)
-                                    .background(Capsule().fill(Color.gray.opacity(0.2)))
+                                    .background(Capsule().fill(Color.gray.opacity(0.1)))
                             )
                             .padding(4)
                         }
