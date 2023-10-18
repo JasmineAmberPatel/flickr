@@ -41,7 +41,7 @@ struct PhotoDetailView: View {
                     Spacer()
                 }
                 
-                // MARK: Photo details
+                // MARK: Author Details
                 HStack(spacing: 0) {
                     UserDetailsView(viewModel: viewModel)
                     Text(", ")
@@ -50,7 +50,32 @@ struct PhotoDetailView: View {
                     Spacer()
                 }
                 .font(.caption)
+                .padding(.bottom, 10)
+                
+                // MARK: Photo tags
                 TagView(imageDetails: imageDetails)
+                
+                Spacer()
+                
+                // MARK: More photos button
+                HStack {
+                    Spacer()
+                    Button {
+                        print("navigate forwards")
+                    } label: {
+                        Text("More Photos by \(userDetails.person?.username.content ?? "")")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 200, height: 53)
+                    .background(.black)
+                    .cornerRadius(10)
+                    .shadow(color: .gray, radius: 2)
+                    Spacer()
+                }
+                .padding(20)
+                
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)

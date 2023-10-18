@@ -168,11 +168,11 @@
 		D5630DE62AACAC3D00C9FCDE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D51A16142AA7CE6300C4C7EE /* PhotoListView.swift */,
 				D5630DE42AAC97FF00C9FCDE /* PhotoDetailView.swift */,
+				D51A16142AA7CE6300C4C7EE /* PhotoListView.swift */,
 				D5630DE02AAB356D00C9FCDE /* PhotoView.swift */,
-				53C049482ADFCA270083ED9D /* UserDetailsView.swift */,
 				53C0494A2ADFD11E0083ED9D /* TagView.swift */,
+				53C049482ADFCA270083ED9D /* UserDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
