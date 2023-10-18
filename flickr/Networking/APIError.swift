@@ -46,7 +46,6 @@ extension APIError: Equatable {
         case (.invalidUrl, .invalidUrl):
             return true
         case (.parsing(let lhsError), .parsing(let rhsError)):
-            // Here we're checking for nil and then comparing the errors
             if let lhsError = lhsError, let rhsError = rhsError {
                 return lhsError.localizedDescription == rhsError.localizedDescription
             } else {

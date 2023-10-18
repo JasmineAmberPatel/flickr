@@ -60,17 +60,15 @@ struct PhotoDetailView: View {
                 // MARK: More photos button
                 HStack {
                     Spacer()
-                    Button {
-                        print("navigate forwards")
-                    } label: {
-                        Text("More Photos by \(userDetails.person?.username.content ?? "")")
-                            .font(.footnote)
-                            .bold()
-                            .foregroundColor(.white)
+                    NavigationLink("More Photos by \(userDetails.person?.username.content ?? "")"){
+                        ImageGridView()
                     }
                     .frame(width: 200, height: 53)
                     .background(.black)
                     .cornerRadius(10)
+                    .font(.footnote)
+                    .bold()
+                    .foregroundColor(.white)
                     .shadow(color: .gray, radius: 2)
                     Spacer()
                 }

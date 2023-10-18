@@ -15,22 +15,25 @@ class PhotosViewModel: ObservableObject {
     @Published var photoSearch: PhotoSearch
     @Published var userDetails: UserDetails
     @Published var imageDetails: ImageDetails
+    @Published var authorPhotos: AuthorPhotos
 
     init(urlBuilder: UrlBuilder = UrlBuilder(),
          flickrService: FlickrServiceProtocol = FlickrService(),
          photoSearch: PhotoSearch = PhotoSearch(),
          userDetails: UserDetails = UserDetails(),
-         imageDetails: ImageDetails = ImageDetails()) {
+         imageDetails: ImageDetails = ImageDetails(),
+         authorPhotos: AuthorPhotos = AuthorPhotos()) {
         self.urlBuilder = urlBuilder
         self.flickrService = flickrService
         self.photoSearch = photoSearch
         self.userDetails = userDetails
         self.imageDetails = imageDetails
+        self.authorPhotos = authorPhotos
     }
     
     @MainActor @discardableResult func getPhotos(searchText: String) async throws -> Result<PhotoSearch, APIError> {
         let url = urlBuilder.urlString(method: "flickr.photos.search",
-                                       params: "&tags=tags&tag_mode=all&text=\(searchText)&safe_search=1")
+                                       params: "&tags=tags&tag_mode=all&text=\(searchText)&safe_search=1&content_types=0")
         
         switch try await flickrService.fetch(PhotoSearch.self, url: url) {
         case .success(let photos):
@@ -59,6 +62,19 @@ class PhotosViewModel: ObservableObject {
         case .success(let details):
             imageDetails = details
             return Result.success(details)
+        case .failure(let error):
+            print(error)
+            return Result.failure(error)
+        }
+    }
+    
+    @MainActor @discardableResult func getPersonsPhotos(userId: String) async throws -> Result<AuthorPhotos, APIError> {
+        let url = urlBuilder.urlString(method: "flickr.people.getPhotos",
+                                       params: "&user_id=\(userId)&safe_search=1&content_types=0")
+        switch try await flickrService.fetch(AuthorPhotos.self, url: url) {
+        case .success(let photos):
+            authorPhotos = photos
+            return Result.success(photos)
         case .failure(let error):
             print(error)
             return Result.failure(error)
