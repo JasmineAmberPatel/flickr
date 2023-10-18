@@ -60,8 +60,15 @@ struct PhotoDetailView: View {
                 // MARK: More photos button
                 HStack {
                     Spacer()
-                    NavigationLink("More Photos by \(userDetails.person?.username.content ?? "")"){
-                        ImageGridView()
+                    NavigationLink("More Photos by \(userDetails.person?.username.content ?? "")") {
+                        ImageGridView(authorPhotos: viewModel.authorPhotos)
+                    }
+                    .task {
+                        do {
+                            try await viewModel.getPersonsPhotos(userId: userDetails.person?.username.content ?? "")
+                        } catch {
+                            print("failing get author photos request")
+                        }
                     }
                     .frame(width: 200, height: 53)
                     .background(.black)
