@@ -25,7 +25,10 @@ struct PhotoListView: View {
                                                 imageDetails: viewModel.imageDetails,
                                                 viewModel: viewModel)
                             } label: {
-                                PhotoView(viewModel: viewModel, photo: photo)
+                                VStack(alignment: .leading) {
+                                    UserDetailsView(viewModel: viewModel)
+                                    PhotoView(photo: photo)
+                                }
                             }
                             .task {
                                 do {

@@ -43,16 +43,13 @@ struct PhotoDetailView: View {
                 
                 // MARK: Photo details
                 HStack(spacing: 0) {
-                    Text("Photo taken by: ")
-                        .bold()
-                    Text(userDetails.person?.username.content ?? "No username available")
-                }
-                HStack(spacing: 0) {
-                    Text("Date: ")
-                        .bold()
+                    UserDetailsView(viewModel: viewModel)
+                    Text(", ")
                     Text(dateFormatter.string(from: dateFormatter.date(
                         from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
+                    Spacer()
                 }
+                .font(.caption)
                 
                 // MARK: Tags
                 FlowLayout {
