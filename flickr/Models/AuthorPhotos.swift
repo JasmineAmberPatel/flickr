@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 // MARK: - AuthorPhotos
 struct AuthorPhotos: Codable, Equatable {
     var authorPhotosList: AuthorPhotoList?
@@ -19,4 +20,3 @@ struct AuthorPhotos: Codable, Equatable {
 struct AuthorPhotoList: Codable, Equatable {
     var photo: [PhotoElement]
 }
-
