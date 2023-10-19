@@ -34,7 +34,6 @@ class PhotosViewModel: ObservableObject {
     @MainActor @discardableResult func getPhotos(searchText: String) async throws -> Result<PhotoSearch, APIError> {
         let url = urlBuilder.urlString(method: "flickr.photos.search",
                                        params: "&tags=tags&tag_mode=all&text=\(searchText)&safe_search=1&content_types=0")
-        
         switch try await flickrService.fetch(PhotoSearch.self, url: url) {
         case .success(let photos):
             photoSearch = photos
@@ -68,12 +67,12 @@ class PhotosViewModel: ObservableObject {
         }
     }
     
-    @MainActor @discardableResult func getPersonsPhotos(userId: String) async throws -> Result<AuthorPhotos, APIError> {
+    @MainActor @discardableResult func getPersonsPhotos(userId: String) async throws -> Result<PhotoSearch, APIError> {
         let url = urlBuilder.urlString(method: "flickr.people.getPhotos",
                                        params: "&user_id=\(userId)&safe_search=1&content_types=0")
-        switch try await flickrService.fetch(AuthorPhotos.self, url: url) {
+        switch try await flickrService.fetch(PhotoSearch.self, url: url) {
         case .success(let photos):
-            authorPhotos = photos
+            photoSearch = photos
             return Result.success(photos)
         case .failure(let error):
             print(error)
