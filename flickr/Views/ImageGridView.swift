@@ -15,20 +15,26 @@ struct ImageGridView: View {
     
     var body: some View {
         ScrollView {
-            if let photos = viewModel.photoSearch.photos?.photo {
+            if let photos = viewModel.authorPhotos.photos?.photo {
                 LazyVGrid(columns: gridLayout, alignment: .center) {
                     ForEach(photos, id: \.self) { photo in
-                        AsyncImage(url: URL(string: photo.photoUrl)) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: (UIScreen.main.bounds.width - 40) / 3)
-                                .cornerRadius(5)
-                                .shadow(color: Color.primary.opacity(0.3), radius: 1)
-                        } placeholder: {
-                            Rectangle()
-                                .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: (UIScreen.main.bounds.width - 40) / 3)
-                                .foregroundColor(Color.gray.opacity(0.2))
+                            NavigationLink {
+                                PhotoDetailView(photo: photo,
+                                                userDetails: viewModel.userDetails,
+                                                imageDetails: viewModel.imageDetails,
+                                                viewModel: viewModel)
+                            } label: {
+                                AsyncImage(url: URL(string: photo.photoUrl)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: (UIScreen.main.bounds.width - 40) / 3)
+                                    .cornerRadius(5)
+                            } placeholder: {
+                                Rectangle()
+                                    .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: (UIScreen.main.bounds.width - 40) / 3)
+                                    .foregroundColor(Color.gray.opacity(0.2))
+                            }
                         }
                     }
                 }
