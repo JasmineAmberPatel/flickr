@@ -61,14 +61,8 @@ struct PhotoDetailView: View {
                 HStack {
                     Spacer()
                     NavigationLink("More Photos by \(userDetails.person?.username.content ?? "")") {
-                        ImageGridView(authorPhotos: viewModel.authorPhotos)
-                    }
-                    .task {
-                        do {
-                            try await viewModel.getPersonsPhotos(userId: userDetails.person?.username.content ?? "")
-                        } catch {
-                            print("failing get author photos request")
-                        }
+                        ImageGridView(userDetails: viewModel.userDetails,
+                                      viewModel: viewModel)
                     }
                     .frame(width: 200, height: 53)
                     .background(.black)
