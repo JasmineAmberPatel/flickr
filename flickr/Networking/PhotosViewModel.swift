@@ -67,12 +67,12 @@ class PhotosViewModel: ObservableObject {
         }
     }
     
-    @MainActor @discardableResult func getPersonsPhotos(userId: String) async throws -> Result<PhotoSearch, APIError> {
+    @MainActor @discardableResult func getPersonsPhotos(userId: String) async throws -> Result<AuthorPhotos, APIError> {
         let url = urlBuilder.urlString(method: "flickr.people.getPhotos",
                                        params: "&user_id=\(userId)&safe_search=1&content_types=0")
-        switch try await flickrService.fetch(PhotoSearch.self, url: url) {
+        switch try await flickrService.fetch(AuthorPhotos.self, url: url) {
         case .success(let photos):
-            photoSearch = photos
+            authorPhotos = photos
             return Result.success(photos)
         case .failure(let error):
             print(error)
