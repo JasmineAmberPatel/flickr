@@ -7,16 +7,11 @@
 
 import Foundation
 
-// MARK: - AuthorPhotos
+// MARK: AuthorPhotos
 struct AuthorPhotos: Codable, Equatable {
-    var authorPhotosList: AuthorPhotoList?
+    var photos: PhotosList?
     
     static func == (lhs: AuthorPhotos, rhs: AuthorPhotos) -> Bool {
-        return lhs.authorPhotosList == rhs.authorPhotosList
+        return lhs.photos == rhs.photos
     }
-}
-
-// MARK: - Photos
-struct AuthorPhotoList: Codable, Equatable {
-    var photo: [PhotoElement]
 }
