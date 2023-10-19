@@ -23,7 +23,7 @@ struct ImageGridView: View {
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: (UIScreen.main.bounds.width - 40) / 3, height: (UIScreen.main.bounds.width - 40) / 3)
-                                .cornerRadius(10)
+                                .cornerRadius(5)
                                 .shadow(color: Color.primary.opacity(0.3), radius: 1)
                         } placeholder: {
                             Rectangle()
@@ -34,6 +34,7 @@ struct ImageGridView: View {
                 }
             }
         }
+        .padding(10)
         .task {
             do {
                 try await viewModel.getPersonsPhotos(userId: userDetails.person?.username.content ?? "")
