@@ -15,8 +15,3 @@ struct PhotoSearch: Codable, Equatable {
         return lhs.photos == rhs.photos
     }
 }
-
-// MARK: PhotosList
-struct PhotosList: Codable, Equatable {
-    var photo: [PhotoElement]?
-}
