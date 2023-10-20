@@ -21,8 +21,6 @@ struct PhotoListView: View {
                         ForEach(photos, id: \.self) { photo in
                             NavigationLink {
                                 PhotoDetailView(photo: photo,
-                                                userDetails: viewModel.userDetails,
-                                                imageDetails: viewModel.imageDetails,
                                                 viewModel: viewModel)
                             } label: {
                                 VStack(alignment: .leading) {

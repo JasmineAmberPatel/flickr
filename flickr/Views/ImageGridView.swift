@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ImageGridView: View {
-    let userDetails: UserDetails
     
     @ObservedObject var viewModel: PhotosViewModel
     @State var gridLayout: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
@@ -20,8 +19,6 @@ struct ImageGridView: View {
                     ForEach(photos, id: \.self) { photo in
                             NavigationLink {
                                 PhotoDetailView(photo: photo,
-                                                userDetails: viewModel.userDetails,
-                                                imageDetails: viewModel.imageDetails,
                                                 viewModel: viewModel)
                             } label: {
                                 AsyncImage(url: URL(string: photo.photoUrl)) { image in
@@ -43,7 +40,7 @@ struct ImageGridView: View {
         .padding(10)
         .task {
             do {
-                try await viewModel.getPersonsPhotos(userId: userDetails.person?.username.content ?? "")
+                try await viewModel.getPersonsPhotos(userId: viewModel.userDetails.person?.username.content ?? "")
             } catch {
                 print("failing get author photos request")
             }
@@ -53,7 +50,6 @@ struct ImageGridView: View {
 
 struct ImageGridView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageGridView(userDetails: UserDetails(),
-                      viewModel: PhotosViewModel())
+        ImageGridView(viewModel: PhotosViewModel())
     }
 }

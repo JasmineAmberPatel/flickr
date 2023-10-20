@@ -9,8 +9,6 @@ import SwiftUI
 
 struct PhotoDetailView: View {
     let photo: PhotoElement
-    let userDetails: UserDetails
-    let imageDetails: ImageDetails
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -46,23 +44,22 @@ struct PhotoDetailView: View {
                     UserDetailsView(viewModel: viewModel)
                     Text(", ")
                     Text(dateFormatter.string(from: dateFormatter.date(
-                        from: imageDetails.photo?.dates?.posted ?? "") ?? Date()))
+                        from: viewModel.imageDetails.photo?.dates?.posted ?? "") ?? Date()))
                     Spacer()
                 }
                 .font(.caption)
                 .padding(.bottom, 10)
                 
                 // MARK: Photo tags
-                TagView(imageDetails: imageDetails)
+                TagView(imageDetails: viewModel.imageDetails)
                 
                 Spacer()
                 
                 // MARK: More photos button
                 HStack {
                     Spacer()
-                    NavigationLink("More Photos by \(userDetails.person?.username.content ?? "")") {
-                        ImageGridView(userDetails: viewModel.userDetails,
-                                      viewModel: viewModel)
+                    NavigationLink("More Photos by \(viewModel.userDetails.person?.username.content ?? "")") {
+                        ImageGridView(viewModel: viewModel)
                     }
                     .frame(width: 200, height: 53)
                     .background(.black)
@@ -93,8 +90,6 @@ struct PhotoDetailView: View {
 struct PhotoDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PhotoDetailView(photo: PhotoElement(),
-                        userDetails: UserDetails(),
-                        imageDetails: ImageDetails(),
                         viewModel: PhotosViewModel())
     }
 }
