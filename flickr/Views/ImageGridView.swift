@@ -11,6 +11,7 @@ struct ImageGridView: View {
     
     @ObservedObject var viewModel: PhotosViewModel
     @State var gridLayout: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
@@ -38,6 +39,15 @@ struct ImageGridView: View {
             }
         }
         .padding(10)
+        .toolbar {
+            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                }
+            }
+        }
         .task {
             do {
                 try await viewModel.getPersonsPhotos(userId: viewModel.userDetails.person?.username.content ?? "")

@@ -24,21 +24,13 @@ struct PhotoListView: View {
                                                 viewModel: viewModel)
                             } label: {
                                 VStack(alignment: .leading) {
-                                    UserDetailsView(viewModel: viewModel)
                                     PhotoView(photo: photo)
-                                }
-                            }
-                            .task {
-                                do {
-                                    try await viewModel.getUserDetails(userId: photo.owner)
-                                } catch {
-                                    print("failing get user details request")
                                 }
                             }
                         }
                     }
                 }
-                .navigationTitle("Image Search")
+                .navigationTitle("Photo Finder")
                 .navigationBarTitleDisplayMode(.inline)
                 .searchable(text: $searchText)
                 .onSubmit(of: .search, {

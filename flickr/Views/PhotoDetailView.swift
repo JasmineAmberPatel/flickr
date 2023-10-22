@@ -17,6 +17,7 @@ struct PhotoDetailView: View {
     }
     
     @ObservedObject var viewModel: PhotosViewModel
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
@@ -75,8 +76,22 @@ struct PhotoDetailView: View {
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
-            .padding(15)
+            .toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+            }
+            .padding(10)
             .task {
+                do {
+                    try await viewModel.getUserDetails(userId: photo.owner)
+                } catch {
+                    print("failing get user details request")
+                }
                 do {
                     try await viewModel.getImageDetails(photoId: photo.id)
                 } catch {
