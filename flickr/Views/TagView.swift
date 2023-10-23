@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct TagView: View {
-    let imageDetails: ImageDetails
+    @ObservedObject var viewModel: PhotosViewModel
     
     var body: some View {
         VStack {
             FlowLayout {
-                if let tags = imageDetails.photo?.tags?.tag {
+                if let tags = viewModel.imageDetails.photo?.tags?.tag {
                     ForEach(tags, id: \.id) { tag in
                         HStack {
                             Text("#\(tag.raw)")
@@ -94,6 +94,17 @@ struct FlowLayout: Layout {
 
 struct TagView_Previews: PreviewProvider {
     static var previews: some View {
-        TagView(imageDetails: ImageDetails())
+        let viewModel = PhotosViewModel()
+        viewModel.imageDetails = ImageDetails(photo: Photo(tags: Tags(tag: [
+            Tag(id: "1", raw: "Birds"),
+            Tag(id: "2", raw: "Trees"),
+            Tag(id: "3", raw: "Nature"),
+            Tag(id: "4", raw: "Photography"),
+            Tag(id: "5", raw: "Landscape"),
+            Tag(id: "6", raw: "Natural"),
+            Tag(id: "7", raw: "Green")
+        ])))
+
+        return TagView(viewModel: viewModel)
     }
 }
