@@ -32,6 +32,10 @@ struct UserDetailsView: View {
 
 struct UserDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        UserDetailsView(viewModel: PhotosViewModel())
+        let sampleUserDetails = UserDetails(person: Person(username: Description(content: "sampleUsername")))
+        let viewModel = PhotosViewModel()
+        viewModel.userDetails = sampleUserDetails
+        
+        return UserDetailsView(viewModel: viewModel)
     }
 }
