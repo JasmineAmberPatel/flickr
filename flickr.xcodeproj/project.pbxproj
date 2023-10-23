@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		53943B312AE6BB6900B41230 /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53943B302AE6BB6900B41230 /* NavigationStateManager.swift */; };
+		53943B332AE6D94D00B41230 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53943B322AE6D94D00B41230 /* SplashView.swift */; };
 		53C049492ADFCA270083ED9D /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C049482ADFCA270083ED9D /* UserDetailsView.swift */; };
 		53C0494B2ADFD11E0083ED9D /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0494A2ADFD11E0083ED9D /* TagView.swift */; };
 		53C0494D2ADFDB3D0083ED9D /* ImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		53943B302AE6BB6900B41230 /* NavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStateManager.swift; sourceTree = "<group>"; };
+		53943B322AE6D94D00B41230 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		53C049482ADFCA270083ED9D /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		53C0494A2ADFD11E0083ED9D /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGridView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				53C0494A2ADFD11E0083ED9D /* TagView.swift */,
 				53C049482ADFCA270083ED9D /* UserDetailsView.swift */,
 				53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */,
+				53943B322AE6D94D00B41230 /* SplashView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				53C049512AE15F990083ED9D /* PhotoElement.swift in Sources */,
 				D5630DDF2AAB176A00C9FCDE /* PhotosViewModel.swift in Sources */,
 				D51A16152AA7CE6300C4C7EE /* PhotoListView.swift in Sources */,
+				53943B332AE6D94D00B41230 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
