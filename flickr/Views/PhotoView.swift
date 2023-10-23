@@ -18,7 +18,7 @@ struct PhotoView: View {
                     .aspectRatio(contentMode: .fit)
             } placeholder: {
                 Rectangle()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 350, height: 220)
                     .foregroundColor(Color.gray.opacity(0.2))
             }
             .padding(10)
