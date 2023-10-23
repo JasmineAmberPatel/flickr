@@ -25,6 +25,8 @@ struct PhotoListView: View {
                         NavigationLink(value: AppNavigation.details) {
                             PhotoView(photo: photo)
                         }
+                        .navigationTitle("Photo Finder")
+                        .navigationBarTitleDisplayMode(.inline)
                         .navigationDestination(for: AppNavigation.self) { state in
                             switch state {
                             case .search:
@@ -36,8 +38,6 @@ struct PhotoListView: View {
                     }
                 }
             }
-            .navigationTitle("Photo Finder")
-            .navigationBarTitleDisplayMode(.inline)
             .environmentObject(navigationStateManager)
             .searchable(text: $searchText)
             .onSubmit(of: .search, {
