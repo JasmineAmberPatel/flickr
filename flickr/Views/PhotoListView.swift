@@ -9,6 +9,9 @@ import SwiftUI
 
 struct PhotoListView: View {
     @State private var searchText: String = ""
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    
     @FocusState private var textField: Bool
     @ObservedObject var viewModel: PhotosViewModel
     
@@ -37,10 +40,19 @@ struct PhotoListView: View {
                     Task {
                         do {
                             try await viewModel.getPhotos(searchText: searchText)
+                            if viewModel.photoSearch.photos?.photo?.isEmpty ?? true {
+                                                            showAlert = true
+                                                            alertMessage = "Sorry, there are no results matching this search term."
+                                                        }
                         } catch {
-                            print("invalid url")
+                            showAlert = true
+                            alertMessage = "An error occurred while fetching data."
                         }
                     }
+                })
+                .alert(isPresented: $showAlert, content: {
+                    Alert(title: Text("Error"), message: Text(alertMessage),
+                          dismissButton: .default(Text("Dismiss")))
                 })
             }
         }
