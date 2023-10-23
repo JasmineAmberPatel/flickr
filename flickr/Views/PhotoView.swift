@@ -11,7 +11,7 @@ struct PhotoView: View {
     let photo: PhotoElement
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             AsyncImage(url: URL(string: photo.photoUrl)) { image in
                 image
                     .resizable()
@@ -21,13 +21,20 @@ struct PhotoView: View {
                     .frame(width: 350, height: 220)
                     .foregroundColor(Color.gray.opacity(0.2))
             }
-            .padding(10)
+            Text(photo.title)
+                .background(Color.black.opacity(0.3))
+                .font(.caption)
+                .offset(y: -15)
+                .foregroundColor(.white)
+                .minimumScaleFactor(0.5)
+                .lineLimit(1)
         }
+        .padding(10)
     }
 }
 
 struct PhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoView(photo: PhotoElement())
+        PhotoView(photo: PhotoElement(title: "Bird in trees"))
     }
 }
