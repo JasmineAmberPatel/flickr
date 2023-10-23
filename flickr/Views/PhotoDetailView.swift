@@ -17,7 +17,7 @@ struct PhotoDetailView: View {
     }
     
     @ObservedObject var viewModel: PhotosViewModel
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var navigationStateManager: NavigationStateManager
     
     var body: some View {
         ScrollView {
@@ -80,9 +80,9 @@ struct PhotoDetailView: View {
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     Button {
-                        dismiss()
+                        navigationStateManager.popToRoot()
                     } label: {
-                        Image(systemName: "xmark")
+                        Image(systemName: "sparkle.magnifyingglass")
                     }
                 }
             }

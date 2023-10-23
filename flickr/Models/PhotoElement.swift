@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: PhotoElement
-struct PhotoElement: Codable, Hashable {
+struct PhotoElement: Codable, Hashable, Identifiable {
     var id: String = ""
     var owner: String = ""
     var secret: String = ""

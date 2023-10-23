@@ -11,7 +11,7 @@ struct ImageGridView: View {
     
     @ObservedObject var viewModel: PhotosViewModel
     @State var gridLayout: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var navigationStateManager: NavigationStateManager
     
     var body: some View {
         ScrollView {
@@ -42,17 +42,19 @@ struct ImageGridView: View {
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                 Button {
-                    dismiss()
+                    navigationStateManager.popToRoot()
                 } label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: "sparkle.magnifyingglass")
                 }
             }
         }
         .task {
             do {
                 try await viewModel.getPersonsPhotos(userId: viewModel.userDetails.person?.username.content ?? "")
-            } catch {
-                print("failing get author photos request")
+            } catch let error as APIError {
+                print(error.errorMessage)
+            } catch let error {
+                print(error)
             }
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53943B312AE6BB6900B41230 /* NavigationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53943B302AE6BB6900B41230 /* NavigationStateManager.swift */; };
 		53C049492ADFCA270083ED9D /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C049482ADFCA270083ED9D /* UserDetailsView.swift */; };
 		53C0494B2ADFD11E0083ED9D /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0494A2ADFD11E0083ED9D /* TagView.swift */; };
 		53C0494D2ADFDB3D0083ED9D /* ImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		53943B302AE6BB6900B41230 /* NavigationStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStateManager.swift; sourceTree = "<group>"; };
 		53C049482ADFCA270083ED9D /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		53C0494A2ADFD11E0083ED9D /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGridView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			children = (
 				D51A15EA2AA7CC9400C4C7EE /* flickrApp.swift */,
 				D5630DEE2AAE506B00C9FCDE /* ContentView.swift */,
+				53943B302AE6BB6900B41230 /* NavigationStateManager.swift */,
 			);
 			path = FlickrApp;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				53C049492ADFCA270083ED9D /* UserDetailsView.swift in Sources */,
 				D5630DE52AAC97FF00C9FCDE /* PhotoDetailView.swift in Sources */,
 				53C0494D2ADFDB3D0083ED9D /* ImageGridView.swift in Sources */,
+				53943B312AE6BB6900B41230 /* NavigationStateManager.swift in Sources */,
 				D5630DDD2AAB16A100C9FCDE /* PhotoSearch.swift in Sources */,
 				D5630DEF2AAE506B00C9FCDE /* ContentView.swift in Sources */,
 				D5630DE82AACAC9400C9FCDE /* FlickrService.swift in Sources */,
