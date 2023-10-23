@@ -34,8 +34,9 @@ struct PhotoDetailView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                     } placeholder: {
-                        ProgressView()
-                            .frame(width: 100, height: 100)
+                        Rectangle()
+                            .frame(width: 350, height: 220)
+                            .foregroundColor(Color.gray.opacity(0.2))
                     }
                     Spacer()
                 }
@@ -52,14 +53,14 @@ struct PhotoDetailView: View {
                 .padding(.bottom, 10)
                 
                 // MARK: Photo tags
-                TagView(imageDetails: viewModel.imageDetails)
+                TagView(viewModel: viewModel)
                 
                 Spacer()
                 
                 // MARK: More photos button
                 HStack {
                     Spacer()
-                    NavigationLink("More Photos by \(viewModel.userDetails.person?.username.content ?? "")") {
+                    NavigationLink("More Photos by: \(viewModel.userDetails.person?.username.content ?? "")") {
                         ImageGridView(viewModel: viewModel)
                     }
                     .frame(width: 200, height: 53)
@@ -104,7 +105,20 @@ struct PhotoDetailView: View {
 
 struct PhotoDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoDetailView(photo: PhotoElement(),
-                        viewModel: PhotosViewModel())
+        let samplePhoto = PhotoElement(owner: "Marie Roy",
+                                       title: "White-crowned Sparrow")
+        let viewModel = PhotosViewModel()
+        viewModel.userDetails = UserDetails(person: Person(username: Description(content: "sampleUsername")))
+        viewModel.imageDetails = ImageDetails(photo: Photo(tags: Tags(tag: [
+            Tag(id: "1", raw: "Birds"),
+            Tag(id: "2", raw: "Trees"),
+            Tag(id: "3", raw: "Nature"),
+            Tag(id: "4", raw: "Photography"),
+            Tag(id: "5", raw: "Landscape"),
+            Tag(id: "6", raw: "Natural"),
+            Tag(id: "7", raw: "Green")
+        ])))
+        
+        return PhotoDetailView(photo: samplePhoto, viewModel: viewModel)
     }
 }
