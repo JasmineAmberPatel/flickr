@@ -51,10 +51,8 @@ struct ImageGridView: View {
         .task {
             do {
                 try await viewModel.getPersonsPhotos(userId: viewModel.userDetails.person?.username.content ?? "")
-            } catch let error as APIError {
-                print(error.errorMessage)
-            } catch let error {
-                print(error)
+            } catch {
+                print("Failing get persons photos request")
             }
         }
     }
