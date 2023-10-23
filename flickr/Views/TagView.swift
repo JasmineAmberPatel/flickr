@@ -11,7 +11,7 @@ struct TagView: View {
     @ObservedObject var viewModel: PhotosViewModel
     
     var body: some View {
-        VStack {
+        ScrollView {
             FlowLayout {
                 if let tags = viewModel.imageDetails.photo?.tags?.tag {
                     ForEach(tags, id: \.id) { tag in
