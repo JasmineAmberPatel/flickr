@@ -8,12 +8,20 @@
 import Foundation
 
 // MARK: ImageDetails
-struct ImageDetails: Codable {
+struct ImageDetails: Codable, Equatable {
     var photo: Photo?
+    
+    static func == (lhs: ImageDetails, rhs: ImageDetails) -> Bool {
+        return lhs.photo == rhs.photo
+    }
 }
 
 // MARK: - Photo
-struct Photo: Codable {
+struct Photo: Codable, Equatable {
+    static func == (lhs: Photo, rhs: Photo) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: String = ""
     var title: Comments?
     var description: Comments?

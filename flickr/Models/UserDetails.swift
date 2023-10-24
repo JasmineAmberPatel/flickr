@@ -8,12 +8,20 @@
 import Foundation
 
 // MARK: UserDetails
-struct UserDetails: Codable {
+struct UserDetails: Codable, Equatable {
     var person: Person?
+    
+    static func == (lhs: UserDetails, rhs: UserDetails) -> Bool {
+        return lhs.person == rhs.person
+    }
 }
 
 // MARK: Person
-struct Person: Codable {
+struct Person: Codable, Equatable  {
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: String = ""
     var nsId: String = ""
     var iconServer: String = ""
