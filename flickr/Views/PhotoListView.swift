@@ -12,33 +12,27 @@ struct PhotoListView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     
-    @StateObject var navigationStateManager = NavigationStateManager()
     @FocusState private var textField: Bool
     @ObservedObject var viewModel: PhotosViewModel
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             // MARK: Image list
-            NavigationStack(path: $navigationStateManager.selectionPath) {
-                if let photos = viewModel.photoSearch.photos?.photo {
-                    List(photos) { photo in
-                        NavigationLink(value: AppNavigation.details) {
-                            PhotoView(photo: photo)
-                        }
-                        .navigationTitle("Photo Finder")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .navigationDestination(for: AppNavigation.self) { state in
-                            switch state {
-                            case .search:
-                                PhotoListView(viewModel: viewModel)
-                            case .details:
+            NavigationView {
+                List {
+                    if let photos = viewModel.photoSearch.photos?.photo {
+                        ForEach(photos, id: \.self) { photo in
+                            NavigationLink {
                                 PhotoDetailView(photo: photo, viewModel: viewModel)
+                            } label: {
+                                PhotoView(photo: photo)
                             }
                         }
                     }
                 }
             }
-            .environmentObject(navigationStateManager)
+            .navigationTitle("Photo Finder")
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText)
             .onSubmit(of: .search, {
                 Task {

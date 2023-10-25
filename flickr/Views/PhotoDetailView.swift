@@ -17,7 +17,6 @@ struct PhotoDetailView: View {
     }
     
     @ObservedObject var viewModel: PhotosViewModel
-    @EnvironmentObject var navigationStateManager: NavigationStateManager
     
     var body: some View {
         ScrollView {
@@ -80,7 +79,7 @@ struct PhotoDetailView: View {
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     Button {
-                        navigationStateManager.popToRoot()
+                        print("go home")
                     } label: {
                         Image(systemName: "sparkle.magnifyingglass")
                     }

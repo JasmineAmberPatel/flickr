@@ -11,7 +11,6 @@ struct ImageGridView: View {
     
     @ObservedObject var viewModel: PhotosViewModel
     @State var gridLayout: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
-    @EnvironmentObject var navigationStateManager: NavigationStateManager
     
     var body: some View {
         ScrollView {
@@ -42,7 +41,7 @@ struct ImageGridView: View {
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                 Button {
-                    navigationStateManager.popToRoot()
+                   print("go home")
                 } label: {
                     Image(systemName: "sparkle.magnifyingglass")
                 }
