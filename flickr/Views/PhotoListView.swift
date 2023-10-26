@@ -11,6 +11,7 @@ struct PhotoListView: View {
     @State private var searchText: String = ""
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var isPresented : Bool = false
     
     @FocusState private var textField: Bool
     @ObservedObject var viewModel: PhotosViewModel
@@ -22,15 +23,16 @@ struct PhotoListView: View {
                 List {
                     if let photos = viewModel.photoSearch.photos?.photo {
                         ForEach(photos, id: \.self) { photo in
-                            NavigationLink {
-                                PhotoDetailView(photo: photo, viewModel: viewModel)
-                            } label: {
+                            NavigationLink(destination:PhotoDetailView(photo: photo, viewModel: viewModel), isActive: self.$isPresented) {
                                 PhotoView(photo: photo)
                             }
+                            .isDetailLink(false)
                         }
                     }
                 }
             }
+            .environment(\.rootPresentationMode, self.$isPresented)
+            .navigationViewStyle(StackNavigationViewStyle())
             .navigationTitle("Photo Finder")
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText)

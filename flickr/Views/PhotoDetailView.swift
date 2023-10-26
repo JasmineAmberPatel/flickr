@@ -16,8 +16,10 @@ struct PhotoDetailView: View {
         return formatter
     }
     
-    @ObservedObject var viewModel: PhotosViewModel    
+    @ObservedObject var viewModel: PhotosViewModel
+    
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     
     var body: some View {
         ScrollView {
@@ -70,6 +72,7 @@ struct PhotoDetailView: View {
                     .bold()
                     .foregroundColor(.white)
                     .shadow(color: .gray, radius: 2)
+
                     Spacer()
                 }
                 .padding(20)
@@ -80,9 +83,9 @@ struct PhotoDetailView: View {
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     Button {
-                        dismiss()
+                        self.rootPresentationMode.wrappedValue.dismiss()
                     } label: {
-                        Image(systemName: "xmark")
+                        Image(systemName: "sparkle.magnifyingglass")
                     }
                 }
             }

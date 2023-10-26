@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		53943B332AE6D94D00B41230 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53943B322AE6D94D00B41230 /* SplashView.swift */; };
+		53943B352AEA7BDC00B41230 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53943B342AEA7BDC00B41230 /* Extensions.swift */; };
 		53C049492ADFCA270083ED9D /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C049482ADFCA270083ED9D /* UserDetailsView.swift */; };
 		53C0494B2ADFD11E0083ED9D /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0494A2ADFD11E0083ED9D /* TagView.swift */; };
 		53C0494D2ADFDB3D0083ED9D /* ImageGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		53943B322AE6D94D00B41230 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		53943B342AEA7BDC00B41230 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		53C049482ADFCA270083ED9D /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		53C0494A2ADFD11E0083ED9D /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		53C0494C2ADFDB3D0083ED9D /* ImageGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGridView.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				D51A15EA2AA7CC9400C4C7EE /* flickrApp.swift */,
 				D5630DEE2AAE506B00C9FCDE /* ContentView.swift */,
+				53943B342AEA7BDC00B41230 /* Extensions.swift */,
 			);
 			path = FlickrApp;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				D5630DF42AAE5DB500C9FCDE /* UserDetails.swift in Sources */,
 				53C0494F2ADFEBDC0083ED9D /* AuthorPhotos.swift in Sources */,
 				D5630DFB2AAF3F8000C9FCDE /* ImageDetails.swift in Sources */,
+				53943B352AEA7BDC00B41230 /* Extensions.swift in Sources */,
 				D5630DE12AAB356D00C9FCDE /* PhotoView.swift in Sources */,
 				53C0494B2ADFD11E0083ED9D /* TagView.swift in Sources */,
 				D51A15EB2AA7CC9400C4C7EE /* flickrApp.swift in Sources */,
