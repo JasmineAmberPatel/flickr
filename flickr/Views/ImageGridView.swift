@@ -15,7 +15,6 @@ struct ImageGridView: View {
     @State private var showAlert = false
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     
     var body: some View {
         ScrollView {
@@ -46,7 +45,7 @@ struct ImageGridView: View {
         .toolbar {
             ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                 Button {
-                    self.rootPresentationMode.wrappedValue.dismiss()
+                    NavigationUtil.popToRootView()
                 } label: {
                     Image(systemName: "sparkle.magnifyingglass")
                 }

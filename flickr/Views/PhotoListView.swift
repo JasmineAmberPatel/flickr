@@ -23,15 +23,13 @@ struct PhotoListView: View {
                 List {
                     if let photos = viewModel.photoSearch.photos?.photo {
                         ForEach(photos, id: \.self) { photo in
-                            NavigationLink(destination:PhotoDetailView(photo: photo, viewModel: viewModel), isActive: self.$isPresented) {
+                            NavigationLink(destination:PhotoDetailView(photo: photo, viewModel: viewModel)) {
                                 PhotoView(photo: photo)
                             }
-                            .isDetailLink(false)
                         }
                     }
                 }
             }
-            .environment(\.rootPresentationMode, self.$isPresented)
             .navigationViewStyle(StackNavigationViewStyle())
             .navigationTitle("Photo Finder")
             .navigationBarTitleDisplayMode(.inline)

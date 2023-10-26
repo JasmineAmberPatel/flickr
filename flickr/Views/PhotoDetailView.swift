@@ -19,7 +19,6 @@ struct PhotoDetailView: View {
     @ObservedObject var viewModel: PhotosViewModel
     
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.rootPresentationMode) private var rootPresentationMode: Binding<RootPresentationMode>
     
     var body: some View {
         ScrollView {
@@ -83,7 +82,7 @@ struct PhotoDetailView: View {
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     Button {
-                        self.rootPresentationMode.wrappedValue.dismiss()
+                        dismiss()
                     } label: {
                         Image(systemName: "sparkle.magnifyingglass")
                     }
