@@ -16,7 +16,8 @@ struct PhotoDetailView: View {
         return formatter
     }
     
-    @ObservedObject var viewModel: PhotosViewModel
+    @ObservedObject var viewModel: PhotosViewModel    
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ScrollView {
@@ -60,7 +61,7 @@ struct PhotoDetailView: View {
                 HStack {
                     Spacer()
                     NavigationLink("More Photos by: \(viewModel.userDetails.person?.username.content ?? "")") {
-                        ImageGridView(viewModel: viewModel)
+                        ImageGridView(photo: photo, viewModel: viewModel)
                     }
                     .frame(width: 200, height: 53)
                     .background(.black)
@@ -79,9 +80,9 @@ struct PhotoDetailView: View {
             .toolbar {
                 ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                     Button {
-                        print("go home")
+                        dismiss()
                     } label: {
-                        Image(systemName: "sparkle.magnifyingglass")
+                        Image(systemName: "xmark")
                     }
                 }
             }
