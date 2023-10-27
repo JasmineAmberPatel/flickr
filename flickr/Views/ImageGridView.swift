@@ -47,7 +47,7 @@ struct ImageGridView: View {
                 Button {
                     NavigationUtil.popToRootView()
                 } label: {
-                    Image(systemName: "sparkle.magnifyingglass")
+                    Image(systemName: "xmark")
                 }
             }
         }

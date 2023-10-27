@@ -26,13 +26,12 @@ struct PhotoListView: View {
                             NavigationLink(destination:PhotoDetailView(photo: photo, viewModel: viewModel)) {
                                 PhotoView(photo: photo)
                             }
+                            .navigationTitle("Photo Finder")
+                            .navigationBarTitleDisplayMode(.inline)
                         }
                     }
                 }
             }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .navigationTitle("Photo Finder")
-            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $searchText)
             .onSubmit(of: .search, {
                 Task {

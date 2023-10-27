@@ -84,7 +84,7 @@ struct PhotoDetailView: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "sparkle.magnifyingglass")
+                        Image(systemName: "xmark")
                     }
                 }
             }

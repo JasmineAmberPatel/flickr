@@ -26,7 +26,7 @@ struct SplashView: View {
                     HStack {
                         Spacer()
                         Image(systemName: "sparkles")
-                            .font(.system(size: 90))
+                            .font(.system(size: 60))
                             .scaleEffect(sparklesScale)                    }
                     .padding(.trailing, 40)
                     .offset(y: +60)
@@ -35,7 +35,7 @@ struct SplashView: View {
                         .scaledToFit()
                     HStack {
                         Image(systemName: "sparkles")
-                            .font(.system(size: 90))
+                            .font(.system(size: 60))
                             .scaleEffect(sparklesScale)
                         Spacer()
                     }
@@ -46,7 +46,7 @@ struct SplashView: View {
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 withAnimation {
                     self.isActive = true
                 }
