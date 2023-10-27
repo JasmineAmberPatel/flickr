@@ -39,7 +39,7 @@ struct PhotoListView: View {
                         try await viewModel.getPhotos(searchText: searchText)
                         if viewModel.photoSearch.photos?.photo?.isEmpty ?? true {
                             showAlert = true
-                            alertMessage = "Sorry, there are no results matching this search term."
+                            alertMessage = "Sorry, there are no results matching this search term. Please search again."
                         }
                     } catch {
                         showAlert = true
@@ -48,8 +48,12 @@ struct PhotoListView: View {
                 }
             })
             .alert(isPresented: $showAlert, content: {
-                Alert(title: Text("Error"), message: Text(alertMessage),
-                      dismissButton: .default(Text("Dismiss")))
+                Alert(title: Text("Error"),
+                      message: Text(alertMessage),
+                      dismissButton: .default(Text("Dismiss"),
+                                              action: { Task { try await viewModel.getPhotos(searchText: "tree") } }
+                                             )
+                )
             })
         }
         .task {
