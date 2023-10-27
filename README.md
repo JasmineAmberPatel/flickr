@@ -1,11 +1,12 @@
-# Flickr App
+# Photo Finder App
 
-**Flickr App** is a modern iOS application built with Swift and SwiftUI. It leverages the MVVM (Model-View-ViewModel) architectural pattern and integrates with the Flickr API to search and display photos.
+**Photo Finder** is a modern iOS application built with Swift and SwiftUI using the Flickr API. It leverages the MVVM (Model-View-ViewModel) architectural pattern and integrates with the Flickr API to search and display photos.
 
 ## Features
 
 - **Search Functionality:** Easily search for photos using keywords and get a list of relevant images from the Flickr API.
 - **Photo Details:** Click on any photo from the search results to view more details about the photo, including its owner, title, the date it was posted, and a list of tags associated with the photo.
+- **Photo Gallery:** Click the more photos button to see a gallery of all of the images uploaded by a user.
 - **Modern UI:** Built using SwiftUI, the app provides a clean and user-friendly interface, offering smooth navigation between views and custom Apple animations.
 
 ## MVVM Architecture
@@ -28,13 +29,6 @@ All network requests in the app utilize Swift's async/await syntax, making the c
 3. Ensure you have the required Swift and SwiftUI versions.
 4. Build and run the application on your preferred simulator or physical device.
 
-## Given more time I would:
+https://github.com/JasmineAmberPatel/flickr/assets/50844049/934ec12c-c9dc-45af-bea8-f7b440e50fe4
 
-- Refactor the way profile information is fetched rather than doing this on the forEach block and doing a request for each photo I would do a batch request for a group of users at a time so there are less API requests and the information is more reliable. I couldn’t find an endpoint which would allow this in the Flickr API documentation so I tried to go down the route of storing all the ownerIds from the getPhotos request in an array and then looping over them and performing a getUserDetails request for each one, then storing all the photo and user information together in a struct which I could then use to show the information together, however I ran out of time to complete this.
-- Add another API request to flickr.people.getPhotos to produce a list of phots by a user and add a view to display this information.
-- Add UI tests which would test the UI works as expected in each of the views.
-- Add more endpoint tests. I only had time to testGetPhotosSuccess and failure but I would continue and test all of the endpoints.
-- Add model tests.
-- Add custom app colors and an app font modifier which could be used to improve the styling.
-- Add an error alert if a user searches for a term which contains no results.
-- Add dummy data to the structs which could be used for previews.
+https://github.com/JasmineAmberPatel/flickr/assets/50844049/b5660ab5-5c6d-4bf4-8ae0-fc66f1e78927
